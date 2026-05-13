@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PSM Exam Hub - Interactive Learning</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+```
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: #1a1a1a;
+        color: #e8e8e8;
+        min-height: 100vh;
+        line-height: 1.6;
+    }
+
+    header {
+        background: linear-gradient(135deg, #0a3a4a 0%, #0d5a6a 100%);
+        padding: 2rem;
+        border-bottom: 3px solid #00d4ff;
+        box-shadow: 0 4px 12px rgba(0, 212, 255, 0.3);
+        margin-bottom: 2rem;
+    }
+
+    .header-content {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+        color: #00e5ff;
+        font-weight: 800;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem 3rem 2rem;
+    }
+
+    .tabs {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 2rem;
+        border-bottom: 2px solid #404040;
+        padding-bottom: 1rem;
+        flex-wrap: wrap;
+        background: #252525;
+        padding: 1rem;
+        border-radius: 8px;
+    }
+
+    .tab-button {
+        background: #1a1a1a;
+        border: 2px solid #404040;
+        color: #a0a0a0;
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        border-radius: 6px;
+        transition: all 0.3s ease;
+    }
+
+    .tab-button:hover {
+        color: #00d4ff;
+        border-color: #00d4ff;
+    }
+
+    .tab-button.active {
+        background: #0a3a4a;
+        color: #00e5ff;
+        border-color: #00e5ff;
+    }
+
+    .tab-content {
+        display: none;
+    }
+
+    .tab-content.active {
+        display: block;
+        animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    .card {
+        background: #1f1f1f;
+        border: 2px solid #404040;
+        border-radius: 10px;
+        padding: 2rem;
+        margin-bottom: 2rem;
+        box-shadow: 0 4px 8px rgba(0, 212, 255, 0.1);
+    }
+
+    .card:hover {
+        border-color: #00d4ff;
+        box-shadow: 0 8px 16px rgba(0, 212, 255, 0.2);
+        transform: translateY(-4px);
+        transition: all 0.3s ease;
+    }
+
+    h2 {
+        font-size: 1.8rem;
+        color: #00e5ff;
+        margin-bottom: 2rem;
+        padding-bottom: 1rem;
+        border-bottom: 2px solid #00d4ff;
+    }
+
+    h3 {
+        font-size: 1.3rem;
+        color: #00d4ff;
+        margin: 1.5rem 0 1rem 0;
+    }
+
+    .question-mcq {
+        background: #252525;
+        border-left: 4px solid #00d4ff;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+    }
+
+    .question-mcq:hover {
+        background: #2a2a2a;
+        border-left-color: #00e5ff;
+    }
+
+    .q-text {
+        font-weight: 700;
+        font-size: 1.05rem;
+        color: #e8e8e8;
+        margin-bottom: 1rem;
+    }
+
+    .options {
+        margin-left: 1rem;
+        display: grid;
+        gap: 0.8rem;
+    }
+
+    .option {
+        background: #1a1a1a;
+        border: 2px solid #404040;
+        padding: 1rem;
+        border-radius: 6px;
+        cursor: pointer;
+        color: #e8e8e8;
+        font-weight: 500;
+        transition: all 0.2s ease;
+        font-size: 1rem;
+    }
+
+    .option:hover {
+        border-color: #00d4ff;
+        background: #222222;
+        transform: translateX(4px);
+    }
+
+    .option.correct {
+        background: rgba(0, 255, 136, 0.2);
+        border-color: #00ff88;
+        color: #00ff88;
+        font-weight: 700;
+    }
+
+    .option.incorrect {
+        background: rgba(255, 68, 102, 0.2);
+        border-color: #ff4466;
+        color: #ff4466;
+        font-weight: 700;
+    }
+
+    .feedback {
+        margin-top: 1rem;
+        padding: 1rem;
+        border-radius: 6px;
+        font-weight: 600;
+        display: none;
+        font-size: 1.1rem;
+    }
+
+    .feedback.show {
+        display: block;
+    }
+
+    .feedback.correct {
+        background: rgba(0, 255, 136, 0.15);
+        color: #00ff88;
+        border-left: 4px solid #00ff88;
+    }
+
+    .feedback.incorrect {
+        background: rgba(255, 68, 102, 0.15);
+        color: #ff4466;
+        border-left: 4px solid #ff4466;
+    }
+
+    .explanation {
+        margin-top: 1rem;
+        padding: 1rem;
+        background: rgba(0, 212, 255, 0.1);
+        border-left: 4px solid #00d4ff;
+        border-radius: 6px;
+        color: #a0a0a0;
+        display: none;
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+
+    .explanation.show {
+        display: block;
+    }
+
+    .question-tf {
+        background: #252525;
+        border-left: 4px solid #ffaa00;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+        border-radius: 8px;
+    }
+
+    .tf-buttons {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1rem;
+    }
+
+    .btn-tf {
+        flex: 1;
+        padding: 0.8rem 1.5rem;
+        background: #1a1a1a;
+        border: 2px solid #404040;
+        color: #e8e8e8;
+        font-weight: 700;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-size: 1rem;
+    }
+
+    .btn-tf:hover:not(:disabled) {
+        border-color: #00d4ff;
+        background: #222222;
+        transform: translateY(-2px);
+    }
+
+    .btn-tf:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
+
+    .question-manual {
+        background: #252525;
+        border-left: 4px solid #8b5cf6;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+        border-radius: 8px;
+    }
+
+    .answer-input {
+        width: 100%;
+        padding: 1rem;
+        background: #1a1a1a;
+        border: 2px solid #404040;
+        color: #e8e8e8;
+        border-radius: 6px;
+        font-family: inherit;
+        font-size: 1rem;
+        margin-bottom: 1rem;
+        transition: all 0.3s ease;
+    }
+
+    .answer-input:focus {
+        outline: none;
+        border-color: #00d4ff;
+        box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.2);
+    }
+
+    .answer-input:disabled {
+        opacity: 0.6;
+    }
+
+    .btn {
+        padding: 0.8rem 2rem;
+        background: linear-gradient(135deg, #00d4ff 0%, #00e5ff 100%);
+        border: none;
+        border-radius: 6px;
+        color: #000;
+        font-weight: 700;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 16px rgba(0, 212, 255, 0.4);
+    }
+
+    .btn:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
+
+    .lopa-checklist {
+        background: #1f1f1f;
+        border: 2px solid #404040;
+        border-radius: 10px;
+        padding: 2rem;
+        margin: 2rem 0;
+    }
+
+    .lopa-item {
+        display: flex;
+        gap: 1rem;
+        padding: 1rem;
+        background: #1a1a1a;
+        border: 2px solid #404040;
+        border-radius: 6px;
+        margin-bottom: 1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .lopa-item:hover {
+        border-color: #00d4ff;
+        background: #222222;
+    }
+
+    .lopa-item.completed {
+        background: rgba(0, 255, 136, 0.1);
+        border-color: #00ff88;
+    }
+
+    .lopa-checkbox {
+        width: 24px;
+        height: 24px;
+        min-width: 24px;
+        border: 2px solid #404040;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        color: #e8e8e8;
+        transition: all 0.3s ease;
+    }
+
+    .lopa-item.completed .lopa-checkbox {
+        background: #00ff88;
+        border-color: #00ff88;
+        color: #000;
+    }
+
+    .lopa-content {
+        flex: 1;
+    }
+
+    .lopa-title {
+        font-weight: 700;
+        color: #e8e8e8;
+        margin-bottom: 0.5rem;
+    }
+
+    .lopa-description {
+        color: #a0a0a0;
+        font-size: 0.9rem;
+    }
+
+    .stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .stat-card {
+        background: #1f1f1f;
+        border: 2px solid #404040;
+        padding: 1.5rem;
+        text-align: center;
+        border-radius: 10px;
+        transition: all 0.3s ease;
+    }
+
+    .stat-card:hover {
+        border-color: #00d4ff;
+        box-shadow: 0 4px 12px rgba(0, 212, 255, 0.2);
+    }
+
+    .stat-value {
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: #00e5ff;
+        margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+        font-size: 0.85rem;
+        color: #a0a0a0;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        font-weight: 600;
+    }
+
+    .key-point {
+        background: rgba(0, 212, 255, 0.1);
+        border-left: 4px solid #00d4ff;
+        padding: 1.5rem;
+        border-radius: 6px;
+        margin: 1.5rem 0;
+        color: #c0c0c0;
+    }
+
+    .key-point::before {
+        content: "💡 ";
+        margin-right: 0.5rem;
+    }
+
+    footer {
+        text-align: center;
+        padding: 2rem;
+        color: #a0a0a0;
+        border-top: 1px solid #404040;
+        margin-top: 4rem;
+        background: #1a1a1a;
+    }
+
+    footer p {
+        margin: 0.5rem 0;
+        font-size: 0.95rem;
+    }
+
+    .progress-bar {
+        width: 100%;
+        height: 10px;
+        background: #404040;
+        border-radius: 5px;
+        overflow: hidden;
+        margin-bottom: 1.5rem;
+    }
+
+    .progress-fill {
+        height: 100%;
+        background: linear-gradient(90deg, #00d4ff 0%, #00ff88 100%);
+        width: 0%;
+        transition: width 0.3s ease;
+    }
+
+    ul, ol {
+        margin-left: 1.5rem;
+        color: #c0c0c0;
+    }
+
+    li {
+        margin-bottom: 0.5rem;
+        line-height: 1.6;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1.5rem 0;
+        background: #1f1f1f;
+    }
+
+    th {
+        background: #0a3a4a;
+        color: #00e5ff;
+        padding: 1rem;
+        text-align: left;
+        font-weight: 700;
+        border: 1px solid #404040;
+    }
+
+    td {
+        padding: 0.875rem 1rem;
+        border: 1px solid #404040;
+        color: #c0c0c0;
+    }
+
+    tr:hover {
+        background: #252525;
+    }
+
+    @media (max-width: 768px) {
+        .container {
+            padding: 0 1rem 2rem 1rem;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+        }
+
+        .card {
+            padding: 1.5rem;
+        }
+
+        .tabs {
+            flex-direction: column;
+        }
+
+        .tab-button {
+            width: 100%;
+        }
+
+        .tf-buttons {
+            flex-direction: column;
+        }
+    }
+</style>
+```
+
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>⚙️ PSM Exam Hub - Interactive Learning Platform</h1>
+        </div>
+    </header>
+
+```
+<div class="container">
+    <div class="tabs">
+        <button class="tab-button active" onclick="openTab(event, 'chapter1')">Chapter 4-1</button>
+        <button class="tab-button" onclick="openTab(event, 'chapter2')">Chapter 4-2: LOPA</button>
+        <button class="tab-button" onclick="openTab(event, 'chapter3')">Chapter 5</button>
+        <button class="tab-button" onclick="openTab(event, 'stats')">Your Score</button>
+    </div>
+
+    <!-- CHAPTER 4-1 -->
+    <div id="chapter1" class="tab-content active">
+        <div class="card">
+            <h2>📚 Chapter 4-1: Hazard Classification & Process Safety</h2>
+
+            <h3>Multiple Choice Questions</h3>
+
+            <!-- MCQ 1 -->
+            <div class="question-mcq">
+                <div class="q-text">Q1: The following is correct about hazardous area classification:</div>
+                <div class="options">
+                    <div class="option" onclick="checkMCQ(this, true, 'Division 1 represents hazardous conditions more likely during normal operation.')">✓ (a) Division 1 is more dangerous than Division 2</div>
+                    <div class="option" onclick="checkMCQ(this, false)">✗ (b) Class III is more dangerous than Class I & II</div>
+                    <div class="option" onclick="checkMCQ(this, false)">✗ (c) Group D is more dangerous than Group A</div>
+                    <div class="option" onclick="checkMCQ(this, false)">✗ (d) Dusts and fibers are classified Class I</div>
+                </div>
+                <div class="feedback"></div>
+                <div class="explanation"></div>
+            </div>
+
+            <!-- MCQ 2 -->
+            <div class="question-mcq">
+                <div class="q-text">Q2: The following is correct about industrial trucks in hazardous areas:</div>
+                <div class="options">
+                    <div class="option" onclick="checkMCQ(this, false)">✗ (a) LP and LPS have similar safety features</div>
+                    <div class="option" onclick="checkMCQ(this, false)">✗ (b) DY has less safety features than D</div>
+                    <div class="option" onclick="checkMCQ(this, false)">✗ (c) EX is safer than ES</div>
+                    <div class="option" onclick="checkMCQ(this, true, 'EE trucks have fully enclosed electric systems for maximum protection.')">✓ (d) EE is the safest industrial truck</div>
+                </div>
+                <div class="feedback"></div>
+                <div class="explanation"></div>
+            </div>
+
+            <!-- MCQ 3 -->
+            <div class="question-mcq">
+                <div class="q-text">Q3: Industrial trucks for Class I, Group B, Division 1:</div>
+                <div class="options">
+                    <div class="option" onclick="checkMCQ(this, false)">✗ (a) EX only</div>
+                    <div class="option" onclick="checkMCQ(this, true, 'These three types have required safety features.')">✓ (b) DY, EE & EX</div>
+                    <div class="option" onclick="checkMCQ(this, false)">✗ (c) DS, DY, ES</div>
+                    <div class="option" onclick="checkMCQ(this, false)">✗ (d) None of the above</div>
+                </div>
+                <div class="feedback"></div>
+                <div class="explanation"></div>
+            </div>
+
+            <!-- MCQ 4 -->
+            <div class="question-mcq">
+                <div class="q-text">Q4: Class II hazardous location:</div>
+                <div class="options">
+                    <div class="option" onclick="checkMCQ(this, false)">✗ (a) Gasoline storage tank</div>
+                    <div class="option" onclick="checkMCQ(this, true, 'Class II involves combustible dust - aluminum powder is a classic example.')">✓ (b) Aluminum powder storage area</div>
+                    <div class="option" onclick="checkMCQ(this, false)">✗ (c) Textile plant</div>
+                    <div class="option" onclick="checkMCQ(this, false)">✗ (d) Gas storage tanks</div>
+                </div>
+                <div class="feedback"></div>
+                <div class="explanation"></div>
+            </div>
+
+            <!-- MCQ 5 -->
+            <div class="question-mcq">
+                <div class="q-text">Q5: NOT true about process knowledge principles:</div>
+                <div class="options">
+                    <div class="option" onclick="checkMCQ(this, false)">✗ (a) Process knowledge should remain useful</div>
+                    <div class="option" onclick="checkMCQ(this, false)">✗ (b) Support efforts to manage change</div>
+                    <div class="option" onclick="checkMCQ(this, true, 'Knowledge SHOULD be accessible to workers.')">✓ (c) Protect knowledge from worker access</div>
+                    <div class="option" onclick="checkMCQ(this, false)">✗ (d) Protect from inadvertent loss</div>
+                </div>
+                <div class="feedback"></div>
+                <div class="explanation"></div>
+            </div>
+
+            <!-- MCQ 6 -->
+            <div class="question-mcq">
+                <div class="q-text">Q6: NOT true about process knowledge:</div>
+                <div class="options">
+                    <div class="option" onclick="checkMCQ(this, false)">✗ (a) Protect and update knowledge</div>
+                    <div class="option" onclick="checkMCQ(this, false)">✗ (b) Use process knowledge</div>
+                    <div class="option" onclick="checkMCQ(this, true, 'Must maintain DEPENDABLE practices.')">✓ (c) Maintain undependable practice</div>
+                    <div class="option" onclick="checkMCQ(this, false)">✗ (d) Catalog for easy retrieval</div>
+                </div>
+                <div class="feedback"></div>
+                <div class="explanation"></div>
+            </div>
+
+            <!-- MCQ 7 -->
+            <div class="question-mcq">
+                <div class="q-text">Q7: NOT true about HIRA:</div>
+                <div class="options">
+                    <div class="option" onclick="checkMCQ(this, true, 'HIRA CAN be applied during operations.')">✓ (a) Can\'t apply during operation phase</div>
+                    <div class="option" onclick="checkMCQ(this, false)">✗ (b) Best applied early in lifecycle</div>
+                    <div class="option" onclick="checkMCQ(this, false)">✗ (c) Earlier = more cost effective</div>
+                    <div class="option" onclick="checkMCQ(this, false)">✗ (d) Common with risk assessment</div>
+                </div>
+                <div class="feedback"></div>
+                <div class="explanation"></div>
+            </div>
+
+            <!-- MCQ 8 -->
+            <div class="question-mcq">
+                <div class="q-text">Q8: Quantitative HIRA technique:</div>
+                <div class="options">
+                    <div class="option" onclick="checkMCQ(this, false)">✗ (a) HAZOP</div>
+                    <div class="option" onclick="checkMCQ(this, false)">✗ (b) What-If</div>
+                    <div class="option" onclick="checkMCQ(this, true, 'FTA uses math to calculate failure probabilities.')">✓ (c) FTA</div>
+                    <div class="option" onclick="checkMCQ(this, false)">✗ (d) FMEA</div>
+                </div>
+                <div class="feedback"></div>
+                <div class="explanation"></div>
+            </div>
+
+            <h3>True or False</h3>
+
+            <div class="question-tf">
+                <div class="q-text">1. Process knowledge management = creation & organizing information</div>
+                <div class="tf-buttons">
+                    <button class="btn-tf" onclick="checkTF(this, false, 'Management includes creating, organizing, MAINTAINING, and PROVIDING information.')">True</button>
+                    <button class="btn-tf" onclick="checkTF(this, true, 'Management includes creating, organizing, MAINTAINING, and PROVIDING information.')">False</button>
+                </div>
+                <div class="explanation"></div>
+            </div>
+
+            <div class="question-tf">
+                <div class="q-text">2. Poor process knowledge affects safety competency</div>
+                <div class="tf-buttons">
+                    <button class="btn-tf" onclick="checkTF(this, true, 'Correct! Poor knowledge undermines safety.')">True</button>
+                    <button class="btn-tf" onclick="checkTF(this, false, 'Correct! Poor knowledge undermines safety.')">False</button>
+                </div>
+                <div class="explanation"></div>
+            </div>
+
+            <div class="question-tf">
+                <div class="q-text">3. D, G & LP trucks prohibited in ANY hazardous area</div>
+                <div class="tf-buttons">
+                    <button class="btn-tf" onclick="checkTF(this, false, 'Prohibited in SOME areas, but allowed in others if rated.')">True</button>
+                    <button class="btn-tf" onclick="checkTF(this, true, 'Prohibited in SOME areas, but allowed in others if rated.')">False</button>
+                </div>
+                <div class="explanation"></div>
+            </div>
+
+            <div class="question-tf">
+                <div class="q-text">4. All RBPSM activities based on process knowledge</div>
+                <div class="tf-buttons">
+                    <button class="btn-tf" onclick="checkTF(this, true, 'Correct! Built on solid process knowledge.')">True</button>
+                    <button class="btn-tf" onclick="checkTF(this, false, 'Correct! Built on solid process knowledge.')">False</button>
+                </div>
+                <div class="explanation"></div>
+            </div>
+
+            <h3>Manual Answers - Type Your Response</h3>
+
+            <div class="question-manual">
+                <div class="q-text">What are the THREE aspects of Process Safety Information?</div>
+                <input type="text" class="answer-input" placeholder="Type: Physical, Chemical, Toxicological" id="manual1">
+                <button class="btn" onclick="checkManual(1, ['Physical', 'Chemical', 'Toxicological'])">Submit Answer</button>
+                <div class="explanation"></div>
+            </div>
+
+            <div class="question-manual">
+                <div class="q-text">What does HIRA stand for?</div>
+                <input type="text" class="answer-input" placeholder="Type: Hazard Identification Risk Analysis" id="manual2">
+                <button class="btn" onclick="checkManual(2, ['Hazard Identification', 'Risk Analysis'])">Submit Answer</button>
+                <div class="explanation"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CHAPTER 4-2: LOPA -->
+    <div id="chapter2" class="tab-content">
+        <div class="card">
+            <h2>🛡️ Chapter 4-2: LOPA Analysis</h2>
+
+            <h3>LOPA Questions</h3>
+
+            <div class="question-mcq">
+                <div class="q-text">Q9: True about LOPA:</div>
+                <div class="options">
+                    <div class="option" onclick="checkMCQ(this, true, 'LOPA uses order-of-magnitude probability categories.')">✓ (a) Uses order-of-magnitude categories</div>
+                    <div class="option" onclick="checkMCQ(this, false)">✗ (b) Identifies scenarios by itself</div>
+                    <div class="option" onclick="checkMCQ(this, false)">✗ (c) Doesn\'t need other methods</div>
+                    <div class="option" onclick="checkMCQ(this, false)">✗ (d) Is purely qualitative</div>
+                </div>
+                <div class="feedback"></div>
+                <div class="explanation"></div>
+            </div>
+
+            <div class="question-mcq">
+                <div class="q-text">Q10: LOPA can be used in:</div>
+                <div class="options">
+                    <div class="option" onclick="checkMCQ(this, false)">✗ (a) Early design only</div>
+                    <div class="option" onclick="checkMCQ(this, false)">✗ (b) Installation only</div>
+                    <div class="option" onclick="checkMCQ(this, false)">✗ (c) Operation only</div>
+                    <div class="option" onclick="checkMCQ(this, true, 'LOPA is flexible across all lifecycle phases.')">✓ (d) Any lifecycle phase</div>
+                </div>
+                <div class="feedback"></div>
+                <div class="explanation"></div>
+            </div>
+
+            <h3>LOPA Practice - 7 Step Checklist</h3>
+
+            <div class="lopa-checklist">
+                <h3 style="margin-top: 0;">Complete the LOPA Analysis Steps (Click to Mark Complete)</h3>
+                <p style="color: #a0a0a0; margin-bottom: 1.5rem;">Click each step as you complete it. Practice identifying all components of a LOPA analysis.</p>
+
+                <div class="lopa-item" onclick="toggleLOPA(this)">
+                    <div class="lopa-checkbox">✓</div>
+                    <div class="lopa-content">
+                        <div class="lopa-title">Step 1: Identify Consequence</div>
+                        <div class="lopa-description">Separator 50 rupture → multiple fatalities</div>
+                    </div>
+                </div>
+
+                <div class="lopa-item" onclick="toggleLOPA(this)">
+                    <div class="lopa-checkbox">✓</div>
+                    <div class="lopa-content">
+                        <div class="lopa-title">Step 2: Define Accident Scenario</div>
+                        <div class="lopa-description">Overpressure due to loss of pressure control</div>
+                    </div>
+                </div>
+
+                <div class="lopa-item" onclick="toggleLOPA(this)">
+                    <div class="lopa-checkbox">✓</div>
+                    <div class="lopa-content">
+                        <div class="lopa-title">Step 3: Identify Initiating Event</div>
+                        <div class="lopa-description">PIC-50 BPCS loop failure (0.1/year)</div>
+                    </div>
+                </div>
+
+                <div class="lopa-item" onclick="toggleLOPA(this)">
+                    <div class="lopa-checkbox">✓</div>
+                    <div class="lopa-content">
+                        <div class="lopa-title">Step 4: Identify IPLs</div>
+                        <div class="lopa-description">1) Safer design  2) SIF PAHH/PAH  3) PSV-50</div>
+                    </div>
+                </div>
+
+                <div class="lopa-item" onclick="toggleLOPA(this)">
+                    <div class="lopa-checkbox">✓</div>
+                    <div class="lopa-content">
+                        <div class="lopa-title">Step 5: Estimate PFDs</div>
+                        <div class="lopa-description">Total: 0.01 × 0.01 × 0.01 = 1×10⁻⁶</div>
+                    </div>
+                </div>
+
+                <div class="lopa-item" onclick="toggleLOPA(this)">
+                    <div class="lopa-checkbox">✓</div>
+                    <div class="lopa-content">
+                        <div class="lopa-title">Step 6: Conditional Modifiers</div>
+                        <div class="lopa-description">Personnel: 0.5 | Fatality: 0.1 | Combined: 0.05</div>
+                    </div>
+                </div>
+
+                <div class="lopa-item" onclick="toggleLOPA(this)">
+                    <div class="lopa-checkbox">✓</div>
+                    <div class="lopa-content">
+                        <div class="lopa-title">Step 7: Calculate & Assess Risk</div>
+                        <div class="lopa-description">Mitigated: 5×10⁻⁹/year | Category 5 | ACCEPTABLE ✓</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="key-point">
+                Excellent! You've completed all 7 LOPA steps. Master these to analyze any process safety scenario.
+            </div>
+
+            <h3>LOPA True/False</h3>
+
+            <div class="question-tf">
+                <div class="q-text">1. Bow-tie analysis input to LOPA</div>
+                <div class="tf-buttons">
+                    <button class="btn-tf" onclick="checkTF(this, true, 'Bow-tie diagrams identify scenarios for LOPA.')">True</button>
+                    <button class="btn-tf" onclick="checkTF(this, false, 'Bow-tie diagrams identify scenarios for LOPA.')">False</button>
+                </div>
+                <div class="explanation"></div>
+            </div>
+
+            <div class="question-tf">
+                <div class="q-text">2. All safeguards are IPLs</div>
+                <div class="tf-buttons">
+                    <button class="btn-tf" onclick="checkTF(this, false, 'Not all meet IPL requirements (independence, effectiveness).')">True</button>
+                    <button class="btn-tf" onclick="checkTF(this, true, 'Not all meet IPL requirements (independence, effectiveness).')">False</button>
+                </div>
+                <div class="explanation"></div>
+            </div>
+
+            <div class="question-tf">
+                <div class="q-text">3. IPLs need independent power sources</div>
+                <div class="tf-buttons">
+                    <button class="btn-tf" onclick="checkTF(this, true, 'Independence is critical for reliability.')">True</button>
+                    <button class="btn-tf" onclick="checkTF(this, false, 'Independence is critical for reliability.')">False</button>
+                </div>
+                <div class="explanation"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CHAPTER 5 -->
+    <div id="chapter3" class="tab-content">
+        <div class="card">
+            <h2>🏭 Chapter 5: Operating Procedures & MOC</h2>
+
+            <h3>Multiple Choice</h3>
+
+            <div class="question-mcq">
+                <div class="q-text">Q1: Operating Procedures for:</div>
+                <div class="options">
+                    <div class="option" onclick="checkMCQ(this, false)">✗ (a) Nonroutine tasks</div>
+                    <div class="option" onclick="checkMCQ(this, false)">✗ (b) Only permit tasks</div>
+                    <div class="option" onclick="checkMCQ(this, false)">✗ (c) Facility-wide only</div>
+                    <div class="option" onclick="checkMCQ(this, true, 'OPs support normal operations safely.')">✓ (d) Normal ops in safe limits</div>
+                </div>
+                <div class="feedback"></div>
+                <div class="explanation"></div>
+            </div>
+
+            <div class="question-mcq">
+                <div class="q-text">Q2: Task requiring OPs:</div>
+                <div class="options">
+                    <div class="option" onclick="checkMCQ(this, false)">✗ (a) Hot works</div>
+                    <div class="option" onclick="checkMCQ(this, true, 'Critical operational procedures.')">✓ (b) Startup/shutdown</div>
+                    <div class="option" onclick="checkMCQ(this, false)">✗ (c) Confined space</div>
+                    <div class="option" onclick="checkMCQ(this, false)">✗ (d) Inspection</div>
+                </div>
+                <div class="feedback"></div>
+                <div class="explanation"></div>
+            </div>
+
+            <div class="question-mcq">
+                <div class="q-text">Q3: OP preparation by:</div>
+                <div class="options">
+                    <div class="option" onclick="checkMCQ(this, false)">✗ (a) Engineers only</div>
+                    <div class="option" onclick="checkMCQ(this, false)">✗ (b) Managers only</div>
+                    <div class="option" onclick="checkMCQ(this, false)">✗ (c) Operators only</div>
+                    <div class="option" onclick="checkMCQ(this, true, 'Multidisciplinary team.')">✓ (d) All of above</div>
+                </div>
+                <div class="feedback"></div>
+                <div class="explanation"></div>
+            </div>
+
+            <div class="question-mcq">
+                <div class="q-text">Q4: MOC needed for:</div>
+                <div class="options">
+                    <div class="option" onclick="checkMCQ(this, false)">✗ (a) Identical replacement</div>
+                    <div class="option" onclick="checkMCQ(this, true, 'Substantial changes.')">✓ (b) Different technology</div>
+                    <div class="option" onclick="checkMCQ(this, false)">✗ (c) Same-kind replacement</div>
+                    <div class="option" onclick="checkMCQ(this, false)">✗ (d) None</div>
+                </div>
+                <div class="feedback"></div>
+                <div class="explanation"></div>
+            </div>
+
+            <h3>True/False</h3>
+
+            <div class="question-tf">
+                <div class="q-text">1. OPs include troubleshooting</div>
+                <div class="tf-buttons">
+                    <button class="btn-tf" onclick="checkTF(this, true, 'OPs guide abnormal conditions.')">True</button>
+                    <button class="btn-tf" onclick="checkTF(this, false, 'OPs guide abnormal conditions.')">False</button>
+                </div>
+                <div class="explanation"></div>
+            </div>
+
+            <div class="question-tf">
+                <div class="q-text">2. OPs cannot be used for training</div>
+                <div class="tf-buttons">
+                    <button class="btn-tf" onclick="checkTF(this, false, 'OPs are excellent training tools.')">True</button>
+                    <button class="btn-tf" onclick="checkTF(this, true, 'OPs are excellent training tools.')">False</button>
+                </div>
+                <div class="explanation"></div>
+            </div>
+
+            <div class="question-tf">
+                <div class="q-text">3. Conduct of operation = correct execution</div>
+                <div class="tf-buttons">
+                    <button class="btn-tf" onclick="checkTF(this, true, 'Framework for proper execution.')">True</button>
+                    <button class="btn-tf" onclick="checkTF(this, false, 'Framework for proper execution.')">False</button>
+                </div>
+                <div class="explanation"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- STATS -->
+    <div id="stats" class="tab-content">
+        <div class="card">
+            <h2>📊 Your Score Dashboard</h2>
+
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressBar"></div>
+            </div>
+
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="stat-value" id="answered">0</div>
+                    <div class="stat-label">Answered</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="correct">0</div>
+                    <div class="stat-label">Correct</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="score">0%</div>
+                    <div class="stat-label">Score</div>
+                </div>
+            </div>
+
+            <div class="key-point">
+                Great effort! Keep practicing to master Process Safety Management. Every question answered brings you closer to exam success! 🚀
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p><strong>PSM Exam Hub © 2025</strong> | Interactive Learning Platform | IESE651</p>
+    <p>Practice, Learn, Master Process Safety Management</p>
+</footer>
+
+<script>
+    let stats = { answered: 0, correct: 0 };
+
+    function openTab(evt, tabName) {
+        const contents = document.querySelectorAll('.tab-content');
+        contents.forEach(c => c.classList.remove('active'));
+        
+        const buttons = document.querySelectorAll('.tab-button');
+        buttons.forEach(b => b.classList.remove('active'));
+        
+        document.getElementById(tabName).classList.add('active');
+        evt.currentTarget.classList.add('active');
+    }
+
+    function checkMCQ(element, isCorrect, explanation) {
+        const question = element.closest('.question-mcq');
+        const options = question.querySelectorAll('.option');
+        const feedback = question.querySelector('.feedback');
+        const explanationDiv = question.querySelector('.explanation');
+
+        options.forEach(opt => opt.style.pointerEvents = 'none');
+        
+        if (isCorrect) {
+            element.classList.add('correct');
+            feedback.textContent = '✅ CORRECT!';
+            feedback.className = 'feedback show correct';
+            stats.correct++;
+        } else {
+            element.classList.add('incorrect');
+            const correct = question.querySelector('[onclick*="true"]');
+            if (correct) correct.classList.add('correct');
+            feedback.textContent = '❌ Incorrect';
+            feedback.className = 'feedback show incorrect';
+        }
+
+        stats.answered++;
+        explanationDiv.textContent = explanation || '';
+        explanationDiv.classList.add('show');
+        updateStats();
+    }
+
+    function checkTF(button, isCorrect, explanation) {
+        const question = button.closest('.question-tf');
+        const buttons = question.querySelectorAll('.btn-tf');
+        const explanationDiv = question.querySelector('.explanation');
+
+        buttons.forEach(b => b.disabled = true);
+
+        if (isCorrect) {
+            button.style.background = 'rgba(0, 255, 136, 0.2)';
+            button.style.borderColor = '#00ff88';
+            button.style.color = '#00ff88';
+            stats.correct++;
+        } else {
+            button.style.background = 'rgba(255, 68, 102, 0.2)';
+            button.style.borderColor = '#ff4466';
+            button.style.color = '#ff4466';
+        }
+
+        stats.answered++;
+        explanationDiv.textContent = explanation;
+        explanationDiv.classList.add('show');
+        updateStats();
+    }
+
+    function checkManual(num, keywords) {
+        const input = document.getElementById(`manual${num}`);
+        const userAnswer = input.value.toUpperCase();
+        const question = input.closest('.question-manual');
+        const explanation = question.querySelector('.explanation');
+
+        let isCorrect = false;
+        for (let kw of keywords) {
+            if (userAnswer.includes(kw.toUpperCase())) {
+                isCorrect = true;
+                break;
+            }
+        }
+
+        if (isCorrect) {
+            input.style.borderColor = '#00ff88';
+            input.style.background = 'rgba(0, 255, 136, 0.1)';
+            explanation.innerHTML = '<strong style="color: #00ff88;">✅ Correct! Good work!</strong>';
+            stats.correct++;
+        } else {
+            input.style.borderColor = '#ff4466';
+            input.style.background = 'rgba(255, 68, 102, 0.1)';
+            explanation.innerHTML = '<strong style="color: #ff4466;">❌ Not quite. Look for: ' + keywords.join(', ') + '</strong>';
+        }
+
+        input.disabled = true;
+        stats.answered++;
+        explanation.classList.add('show');
+        updateStats();
+    }
+
+    function toggleLOPA(element) {
+        element.classList.toggle('completed');
+    }
+
+    function updateStats() {
+        const total = stats.answered;
+        const percentage = total > 0 ? Math.round((stats.correct / total) * 100) : 0;
+
+        document.getElementById('answered').textContent = total;
+        document.getElementById('correct').textContent = stats.correct;
+        document.getElementById('score').textContent = percentage + '%';
+        document.getElementById('progressBar').style.width = (total / 40) * 100 + '%';
+    }
+
+    updateStats();
+</script>
+```
+
+</body>
+</html>
