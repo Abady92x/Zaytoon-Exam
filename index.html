@@ -1,0 +1,1540 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PSM Exam Hub - Process Safety Management Study Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+```
+    :root {
+        --primary: #0f172a;
+        --secondary: #1e293b;
+        --accent: #06b6d4;
+        --accent-light: #22d3ee;
+        --success: #10b981;
+        --warning: #f59e0b;
+        --danger: #ef4444;
+        --text: #f1f5f9;
+        --text-muted: #cbd5e1;
+        --border: #334155;
+        --bg-hover: #1e293b;
+    }
+
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, var(--primary) 0%, #1a1f35 100%);
+        color: var(--text);
+        min-height: 100vh;
+        overflow-x: hidden;
+    }
+
+    /* Header */
+    header {
+        background: rgba(15, 23, 42, 0.95);
+        backdrop-filter: blur(10px);
+        border-bottom: 2px solid var(--accent);
+        padding: 2rem 0;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        box-shadow: 0 8px 32px rgba(6, 182, 212, 0.1);
+    }
+
+    .header-content {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .logo {
+        font-size: 1.8rem;
+        font-weight: 700;
+        background: linear-gradient(135deg, var(--accent), var(--accent-light));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .logo::before {
+        content: "⚙️";
+        font-size: 2rem;
+    }
+
+    .progress-bar {
+        height: 4px;
+        background: var(--border);
+        border-radius: 2px;
+        overflow: hidden;
+        width: 150px;
+    }
+
+    .progress-fill {
+        height: 100%;
+        background: linear-gradient(90deg, var(--accent), var(--accent-light));
+        width: 0%;
+        transition: width 0.3s ease;
+        border-radius: 2px;
+    }
+
+    /* Main Container */
+    .container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 3rem 2rem;
+    }
+
+    /* Tabs Navigation */
+    .tabs {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 2rem;
+        flex-wrap: wrap;
+        border-bottom: 2px solid var(--border);
+        padding-bottom: 1.5rem;
+        overflow-x: auto;
+    }
+
+    .tab-button {
+        background: transparent;
+        border: none;
+        color: var(--text-muted);
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+        border-bottom: 3px solid transparent;
+        margin-bottom: -1.5rem;
+    }
+
+    .tab-button:hover {
+        color: var(--accent-light);
+        transform: translateY(-2px);
+    }
+
+    .tab-button.active {
+        color: var(--accent);
+        border-bottom-color: var(--accent);
+    }
+
+    /* Tab Content */
+    .tab-content {
+        display: none;
+        animation: fadeIn 0.3s ease;
+    }
+
+    .tab-content.active {
+        display: block;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Cards */
+    .card {
+        background: linear-gradient(135deg, rgba(30, 41, 59, 0.8), rgba(15, 23, 42, 0.8));
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 2rem;
+        margin-bottom: 2rem;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(10px);
+    }
+
+    .card:hover {
+        border-color: var(--accent);
+        box-shadow: 0 8px 32px rgba(6, 182, 212, 0.15);
+        transform: translateY(-4px);
+    }
+
+    .card-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        color: var(--accent-light);
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+    }
+
+    /* Question Styles */
+    .question {
+        margin-bottom: 1.5rem;
+        padding: 1.5rem;
+        background: rgba(15, 23, 42, 0.6);
+        border-left: 4px solid var(--accent);
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .question:hover {
+        background: rgba(15, 23, 42, 0.8);
+        border-left-color: var(--accent-light);
+        transform: translateX(4px);
+    }
+
+    .question-text {
+        font-weight: 600;
+        margin-bottom: 1rem;
+        font-size: 1.05rem;
+    }
+
+    .question.multiple-choice .options {
+        display: grid;
+        gap: 0.75rem;
+        margin-left: 1rem;
+    }
+
+    .option {
+        padding: 0.75rem 1rem;
+        background: rgba(30, 41, 59, 0.5);
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        font-size: 0.95rem;
+    }
+
+    .option:hover {
+        background: rgba(6, 182, 212, 0.1);
+        border-color: var(--accent);
+    }
+
+    .option.selected {
+        background: rgba(6, 182, 212, 0.2);
+        border-color: var(--accent);
+        font-weight: 600;
+    }
+
+    .option.correct {
+        background: rgba(16, 185, 129, 0.2);
+        border-color: var(--success);
+        color: var(--success);
+    }
+
+    .option.incorrect {
+        background: rgba(239, 68, 68, 0.2);
+        border-color: var(--danger);
+        color: var(--danger);
+    }
+
+    .answer-explanation {
+        margin-top: 1rem;
+        padding: 1rem;
+        background: rgba(6, 182, 212, 0.1);
+        border-left: 3px solid var(--accent);
+        border-radius: 6px;
+        display: none !important;
+    }
+
+    .answer-explanation.show {
+        display: block !important;
+        animation: slideDown 0.3s ease;
+    }
+
+    @keyframes slideDown {
+        from {
+            opacity: 0;
+            max-height: 0;
+        }
+        to {
+            opacity: 1;
+            max-height: 500px;
+        }
+    }
+
+    /* Formula/Content Blocks */
+    .formula-block {
+        background: linear-gradient(135deg, rgba(6, 182, 212, 0.1), rgba(34, 211, 238, 0.05));
+        border: 1px solid var(--accent);
+        border-radius: 8px;
+        padding: 1.5rem;
+        margin: 1rem 0;
+        font-family: 'Courier New', monospace;
+        font-size: 0.95rem;
+        overflow-x: auto;
+    }
+
+    /* Table Styles */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1.5rem 0;
+        background: rgba(15, 23, 42, 0.4);
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    th {
+        background: linear-gradient(135deg, var(--accent), var(--accent-light));
+        padding: 1rem;
+        text-align: left;
+        font-weight: 700;
+        color: var(--primary);
+    }
+
+    td {
+        padding: 0.875rem 1rem;
+        border-bottom: 1px solid var(--border);
+    }
+
+    tr:hover {
+        background: rgba(6, 182, 212, 0.05);
+    }
+
+    /* Quiz Mode */
+    .quiz-controls {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 2rem;
+        flex-wrap: wrap;
+    }
+
+    .btn {
+        padding: 0.75rem 1.5rem;
+        background: linear-gradient(135deg, var(--accent), var(--accent-light));
+        border: none;
+        border-radius: 6px;
+        color: var(--primary);
+        font-weight: 700;
+        font-size: 0.95rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 16px rgba(6, 182, 212, 0.3);
+    }
+
+    .btn:active {
+        transform: translateY(0);
+    }
+
+    .btn.secondary {
+        background: transparent;
+        color: var(--accent);
+        border: 2px solid var(--accent);
+    }
+
+    .btn.secondary:hover {
+        background: rgba(6, 182, 212, 0.1);
+    }
+
+    /* Stats Section */
+    .stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .stat-card {
+        background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(6, 182, 212, 0.1));
+        border: 1px solid var(--accent);
+        border-radius: 8px;
+        padding: 1.5rem;
+        text-align: center;
+    }
+
+    .stat-value {
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--accent);
+        margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+        font-size: 0.9rem;
+        color: var(--text-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
+    /* Process Parameters Table */
+    .param-diagram {
+        display: grid;
+        grid-template-rows: 50px 80px 80px 80px 80px 80px 50px;
+        gap: 4px;
+        margin: 2rem 0;
+        background: rgba(15, 23, 42, 0.6);
+        padding: 1rem;
+        border-radius: 8px;
+        border: 1px solid var(--accent);
+    }
+
+    .param-level {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+        border-radius: 6px;
+        font-size: 0.9rem;
+        text-align: center;
+        padding: 0.5rem;
+    }
+
+    .level-unacceptable {
+        background: rgba(239, 68, 68, 0.2);
+        border: 1px solid var(--danger);
+        color: var(--danger);
+    }
+
+    .level-buffer {
+        background: rgba(245, 158, 11, 0.2);
+        border: 1px solid var(--warning);
+        color: var(--warning);
+    }
+
+    .level-normal {
+        background: rgba(16, 185, 129, 0.2);
+        border: 1px solid var(--success);
+        color: var(--success);
+    }
+
+    .level-troubleshooting {
+        background: rgba(59, 130, 246, 0.2);
+        border: 1px solid #3b82f6;
+        color: #3b82f6;
+    }
+
+    /* Footer */
+    footer {
+        text-align: center;
+        padding: 2rem;
+        color: var(--text-muted);
+        border-top: 1px solid var(--border);
+        margin-top: 4rem;
+        font-size: 0.9rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .header-content {
+            flex-direction: column;
+            gap: 1rem;
+            text-align: center;
+        }
+
+        .tabs {
+            flex-direction: column;
+        }
+
+        .tab-button {
+            text-align: left;
+        }
+
+        .container {
+            padding: 2rem 1rem;
+        }
+
+        .card {
+            padding: 1.5rem;
+        }
+
+        .param-diagram {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    /* Accessibility */
+    :focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+    }
+
+    /* Scrollbar Styling */
+    ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: var(--primary);
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: var(--accent);
+        border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: var(--accent-light);
+    }
+
+    /* Badge */
+    .badge {
+        display: inline-block;
+        padding: 0.25rem 0.75rem;
+        background: rgba(6, 182, 212, 0.2);
+        border: 1px solid var(--accent);
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: var(--accent);
+        margin-right: 0.5rem;
+    }
+
+    .badge.important {
+        background: rgba(239, 68, 68, 0.2);
+        border-color: var(--danger);
+        color: var(--danger);
+    }
+
+    .content-list {
+        list-style: none;
+        margin: 1.5rem 0;
+    }
+
+    .content-list li {
+        padding: 0.75rem 0;
+        padding-left: 2rem;
+        position: relative;
+    }
+
+    .content-list li::before {
+        content: "→";
+        position: absolute;
+        left: 0;
+        color: var(--accent);
+        font-weight: 700;
+    }
+
+    /* Key Points */
+    .key-point {
+        background: linear-gradient(135deg, rgba(6, 182, 212, 0.15), rgba(34, 211, 238, 0.05));
+        border-left: 4px solid var(--accent-light);
+        padding: 1rem;
+        border-radius: 6px;
+        margin: 1rem 0;
+    }
+
+    .key-point::before {
+        content: "💡 Key Point: ";
+        font-weight: 700;
+        color: var(--accent-light);
+    }
+</style>
+```
+
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <a href="#" class="logo">PSM Exam Hub</a>
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+        </div>
+    </header>
+
+```
+<div class="container">
+    <!-- Tabs Navigation -->
+    <div class="tabs">
+        <button class="tab-button active" data-tab="chapter4-1">Chapter 4-1: Basics</button>
+        <button class="tab-button" data-tab="chapter4-2">Chapter 4-2: LOPA</button>
+        <button class="tab-button" data-tab="chapter5">Chapter 5: Operations</button>
+        <button class="tab-button" data-tab="practice">Practice Mode</button>
+    </div>
+
+    <!-- Chapter 4-1 -->
+    <div id="chapter4-1" class="tab-content active">
+        <div class="card">
+            <div class="card-title">📚 Chapter 4-1: Hazard Classification & Process Safety</div>
+            
+            <h3 style="color: var(--accent-light); margin-top: 2rem; margin-bottom: 1rem;">🎯 Multiple Choice Questions</h3>
+            
+            <div class="question multiple-choice">
+                <div class="question-text">Q1: The following is correct about hazardous area classification:</div>
+                <div class="options">
+                    <div class="option" data-answer="a">(a) Division 1 is more dangerous than Division 2</div>
+                    <div class="option" data-answer="b">(b) Class III is more dangerous than Class I & II</div>
+                    <div class="option" data-answer="c">(c) Group D is more dangerous than Group A</div>
+                    <div class="option" data-answer="d">(d) Dusts and fibers are classified Class I</div>
+                </div>
+                <div class="answer-explanation">
+                    <strong>Answer:</strong> (a) Division 1 is more dangerous than Division 2. Division 1 represents hazardous conditions that are more likely to exist during normal operation, making it more dangerous.
+                </div>
+            </div>
+
+            <div class="question multiple-choice">
+                <div class="question-text">Q2: The following is correct about the use of industrial trucks in hazardous areas:</div>
+                <div class="options">
+                    <div class="option" data-answer="a">(a) LP and LPS have similar safety features</div>
+                    <div class="option" data-answer="b">(b) DY has less safety features than D</div>
+                    <div class="option" data-answer="c">(c) EX is safer than ES</div>
+                    <div class="option" data-answer="d">(d) EE is the safest industrial truck</div>
+                </div>
+                <div class="answer-explanation">
+                    <strong>Answer:</strong> (d) EE is the safest industrial truck. EE trucks have electric systems completely enclosed and are designed for the most hazardous environments.
+                </div>
+            </div>
+
+            <div class="question multiple-choice">
+                <div class="question-text">Q3: The following industrial trucks can be used in a hazardous area of Class I, Group B, Division 1:</div>
+                <div class="options">
+                    <div class="option" data-answer="a">(a) EX only</div>
+                    <div class="option" data-answer="b">(b) DY, EE & EX</div>
+                    <div class="option" data-answer="c">(c) DS, DY, ES</div>
+                    <div class="option" data-answer="d">(d) None of the above</div>
+                </div>
+                <div class="answer-explanation">
+                    <strong>Answer:</strong> (b) DY, EE & EX. These trucks have the necessary safety features to operate in Class I, Group B, Division 1 hazardous locations.
+                </div>
+            </div>
+
+            <div class="question multiple-choice">
+                <div class="question-text">Q4: The following unit has, most probably, a Class II hazardous location:</div>
+                <div class="options">
+                    <div class="option" data-answer="a">(a) Gasoline storage tank</div>
+                    <div class="option" data-answer="b">(b) Aluminum powder storage area</div>
+                    <div class="option" data-answer="c">(c) Textile plant</div>
+                    <div class="option" data-answer="d">(d) Gas storage tanks</div>
+                </div>
+                <div class="answer-explanation">
+                    <strong>Answer:</strong> (b) Aluminum powder storage area. Class II involves combustible dust hazards, of which aluminum powder is a classic example.
+                </div>
+            </div>
+
+            <div class="question multiple-choice">
+                <div class="question-text">Q5: The following is NOT true about process knowledge principles:</div>
+                <div class="options">
+                    <div class="option" data-answer="a">(a) Process knowledge should remain useful</div>
+                    <div class="option" data-answer="b">(b) Support efforts to properly manage change</div>
+                    <div class="option" data-answer="c">(c) Protect knowledge from being accessed by workers</div>
+                    <div class="option" data-answer="d">(d) Protect knowledge from inadvertent loss</div>
+                </div>
+                <div class="answer-explanation">
+                    <strong>Answer:</strong> (c) Protect knowledge from being accessed by workers. Process knowledge SHOULD be accessible to workers for safety and operational effectiveness.
+                </div>
+            </div>
+
+            <div class="question multiple-choice">
+                <div class="question-text">Q6: The following is NOT true about process knowledge principles:</div>
+                <div class="options">
+                    <div class="option" data-answer="a">(a) Protect and update process knowledge</div>
+                    <div class="option" data-answer="b">(b) Use process knowledge</div>
+                    <div class="option" data-answer="c">(c) Maintain an undependable practice</div>
+                    <div class="option" data-answer="d">(d) Catalog process knowledge in a manner that facilitates retrieval</div>
+                </div>
+                <div class="answer-explanation">
+                    <strong>Answer:</strong> (c) Maintain an undependable practice. This is incorrect; we should maintain DEPENDABLE practices based on process knowledge.
+                </div>
+            </div>
+
+            <div class="question multiple-choice">
+                <div class="question-text">Q7: The following is NOT true about the application of HIRA:</div>
+                <div class="options">
+                    <div class="option" data-answer="a">(a) HIRA can't be applied during the operation phase of the lifecycle</div>
+                    <div class="option" data-answer="b">(b) HIRA is best applied earlier in the lifecycle</div>
+                    <div class="option" data-answer="c">(c) The earlier HIRA is applied in the lifecycle, the more cost effective it is</div>
+                    <div class="option" data-answer="d">(d) There are common activities in both HIRA and risk assessment</div>
+                </div>
+                <div class="answer-explanation">
+                    <strong>Answer:</strong> (a) HIRA can't be applied during the operation phase - This is FALSE. HIRA CAN be applied during operations for continuous improvement and hazard reassessment.
+                </div>
+            </div>
+
+            <div class="question multiple-choice">
+                <div class="question-text">Q8: The following is a quantitative HIRA technique:</div>
+                <div class="options">
+                    <div class="option" data-answer="a">(a) HAZOP</div>
+                    <div class="option" data-answer="b">(b) What-If</div>
+                    <div class="option" data-answer="c">(c) FTA</div>
+                    <div class="option" data-answer="d">(d) FMEA</div>
+                </div>
+                <div class="answer-explanation">
+                    <strong>Answer:</strong> (c) FTA (Fault Tree Analysis). FTA is a quantitative technique that uses mathematical/logical operators to calculate failure probabilities.
+                </div>
+            </div>
+        </div>
+
+        <!-- Process Parameters -->
+        <div class="card">
+            <div class="card-title">📊 Q2: Process Parameter Levels</div>
+            <p style="margin-bottom: 1.5rem;">The various levels of a process parameter in their correct order:</p>
+            
+            <div class="param-diagram">
+                <div class="param-level level-unacceptable">Unacceptable / Unknown Operating Zone</div>
+                <div class="param-level level-buffer">Buffer Zone</div>
+                <div class="param-level level-troubleshooting">Troubleshooting Zone</div>
+                <div class="param-level level-normal">Normal Operating Zone</div>
+                <div class="param-level level-troubleshooting">Troubleshooting Zone</div>
+                <div class="param-level level-buffer">Buffer Zone</div>
+                <div class="param-level level-unacceptable">Unacceptable / Unknown Operating Zone</div>
+            </div>
+
+            <div class="key-point">The process parameter must operate within the normal operating zone with buffer zones to catch any deviations before reaching unacceptable levels.
+            </div>
+        </div>
+
+        <!-- HIRA Analysis -->
+        <div class="card">
+            <div class="card-title">🔍 Q3: Why Perform Only Necessary Level of Analysis in HIRA?</div>
+            <ul class="content-list">
+                <li><strong>Insufficient analysis:</strong> May lead to poor decisions and missed hazards</li>
+                <li><strong>Excessive analysis:</strong> Wastes valuable resources and delays decision-making</li>
+            </ul>
+            <div class="key-point">Balance is critical - conduct enough analysis to be thorough but not so much that resources are wasted on diminishing returns.
+            </div>
+        </div>
+
+        <!-- True/False -->
+        <div class="card">
+            <div class="card-title">✅ Q4: True/False Statements (Corrected)</div>
+            
+            <div class="question">
+                <div class="question-text">1. Process knowledge management means creation and organizing information.</div>
+                <div class="answer-explanation">
+                    <strong>Correction:</strong> Process knowledge management includes <strong>creating, organizing, maintaining, and providing</strong> information - not just creation and organization.
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text">2. Poor process knowledge negatively affects process safety competency.</div>
+                <div class="answer-explanation">
+                    <strong>✓ TRUE</strong> - Poor process knowledge directly undermines the ability to operate safely.
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text">3. D, G & LP trucks are not allowed to enter any hazardous area.</div>
+                <div class="answer-explanation">
+                    <strong>Correction:</strong> D, G, and LP trucks are <strong>prohibited in SOME hazardous areas</strong> (e.g., Class I Division 1), but may be allowed in other hazardous areas (e.g., Class I Division 2) if properly rated.
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text">4. Maintaining dependable practice means all RBPSM activities should be based on process knowledge.</div>
+                <div class="answer-explanation">
+                    <strong>✓ TRUE</strong> - Dependable practice is built on solid, current process knowledge.
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text">5. What-If analysis and Safety Reviews are simple techniques requiring only one person.</div>
+                <div class="answer-explanation">
+                    <strong>Correction:</strong> What-If analysis and Safety Reviews are <strong>group-based techniques</strong> that require multiple participants for diverse perspectives.
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text">6. Formal Safety Reviews are most suitable for small changes to existing processes.</div>
+                <div class="answer-explanation">
+                    <strong>Correction:</strong> Formal Safety Reviews are used for <strong>new processes and substantial changes</strong>, while informal reviews are used for small changes.
+                </div>
+            </div>
+        </div>
+
+        <!-- Fill in the Blanks -->
+        <div class="card">
+            <div class="card-title">📝 Q5: Key Definitions</div>
+            
+            <div style="margin: 1.5rem 0;">
+                <h4 style="color: var(--accent); margin-bottom: 1rem;">Process Safety Information includes three aspects:</h4>
+                <ol class="content-list" style="list-style: decimal; padding-left: 2rem;">
+                    <li style="padding-left: 0;"><strong>Physical</strong> properties</li>
+                    <li style="padding-left: 0;"><strong>Chemical</strong> properties</li>
+                    <li style="padding-left: 0;"><strong>Toxicological</strong> data</li>
+                </ol>
+            </div>
+
+            <div style="margin: 1.5rem 0;">
+                <h4 style="color: var(--accent); margin-bottom: 1rem;">Three Important Diagrams:</h4>
+                <ul class="content-list">
+                    <li><strong>Block Flow Diagram:</strong> Shows major equipment or units</li>
+                    <li><strong>Process Flow Diagram:</strong> Shows pressure, temperature, composition, flow rate, etc.</li>
+                    <li><strong>Piping & Instrumentation Diagram (P&ID):</strong> Shows details about piping, vessels, and instrumentation</li>
+                </ul>
+            </div>
+
+            <div style="margin: 1.5rem 0;">
+                <h4 style="color: var(--accent); margin-bottom: 1rem;">Key Acronyms:</h4>
+                <ul class="content-list">
+                    <li><strong>HIRA:</strong> Hazard Identification & Risk Analysis</li>
+                    <li><strong>Formal Safety Reviews:</strong> Used for new processes or substantial changes</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chapter 4-2: LOPA -->
+    <div id="chapter4-2" class="tab-content">
+        <div class="card">
+            <div class="card-title">🛡️ Chapter 4-2: Layers of Protection Analysis (LOPA)</div>
+            
+            <h3 style="color: var(--accent-light); margin-top: 2rem; margin-bottom: 1rem;">🎯 Multiple Choice Questions</h3>
+            
+            <div class="question multiple-choice">
+                <div class="question-text">Q9: The following is true about LOPA:</div>
+                <div class="options">
+                    <div class="option" data-answer="a">(a) It uses order-of-magnitude categories of probability</div>
+                    <div class="option" data-answer="b">(b) It identifies potential scenarios of concern by itself</div>
+                    <div class="option" data-answer="c">(c) LOPA does not need the results of other analysis methods to build on</div>
+                    <div class="option" data-answer="d">(d) LOPA is a qualitative method</div>
+                </div>
+                <div class="answer-explanation">
+                    <strong>Answer:</strong> (a) It uses order-of-magnitude categories of probability. LOPA employs probability categories (not precise calculations) to assess risk.
+                </div>
+            </div>
+
+            <div class="question multiple-choice">
+                <div class="question-text">Q10: LOPA can be a useful tool to assess and manage risk during:</div>
+                <div class="options">
+                    <div class="option" data-answer="a">(a) The early design phase of a process</div>
+                    <div class="option" data-answer="b">(b) The installation phase of a process</div>
+                    <div class="option" data-answer="c">(c) The operation phase of a process</div>
+                    <div class="option" data-answer="d">(d) Any phase in the lifecycle of a process</div>
+                </div>
+                <div class="answer-explanation">
+                    <strong>Answer:</strong> (d) Any phase in the lifecycle of a process. LOPA is flexible and can be applied throughout the entire lifecycle.
+                </div>
+            </div>
+
+            <div class="question multiple-choice">
+                <div class="question-text">Q11: A device failure, system failure, external event, or wrong action that begins a sequence of events:</div>
+                <div class="options">
+                    <div class="option" data-answer="a">(a) Common cause failure</div>
+                    <div class="option" data-answer="b">(b) Initiating event</div>
+                    <div class="option" data-answer="c">(c) Enabling condition</div>
+                    <div class="option" data-answer="d">(d) Conditional modifier</div>
+                </div>
+                <div class="answer-explanation">
+                    <strong>Answer:</strong> (b) Initiating event. This is the starting point of a hazardous scenario.
+                </div>
+            </div>
+
+            <div class="question multiple-choice">
+                <div class="question-text">Q12: The following is true about layers of protection:</div>
+                <div class="options">
+                    <div class="option" data-answer="a">(a) Some of them are preventive and others are mitigative</div>
+                    <div class="option" data-answer="b">(b) All of them should be preventive</div>
+                    <div class="option" data-answer="c">(c) All of them should be of the active type</div>
+                    <div class="option" data-answer="d">(d) All of them should be of the passive type</div>
+                </div>
+                <div class="answer-explanation">
+                    <strong>Answer:</strong> (a) Some of them are preventive and others are mitigative. A robust protection system includes both prevention and mitigation layers.
+                </div>
+            </div>
+
+            <div class="question multiple-choice">
+                <div class="question-text">Q13: The most effective layer of protection is:</div>
+                <div class="options">
+                    <div class="option" data-answer="a">(a) Relief devices</div>
+                    <div class="option" data-answer="b">(b) Critical alarms and human intervention</div>
+                    <div class="option" data-answer="c">(c) Process design</div>
+                    <div class="option" data-answer="d">(d) Safety instrumented functions</div>
+                </div>
+                <div class="answer-explanation">
+                    <strong>Answer:</strong> (c) Process design. Inherent safety through design is the most effective and reliable layer of protection.
+                </div>
+            </div>
+
+            <div class="question multiple-choice">
+                <div class="question-text">Q14: Dikes are:</div>
+                <div class="options">
+                    <div class="option" data-answer="a">(a) Enabling conditions</div>
+                    <div class="option" data-answer="b">(b) Passive IPLs</div>
+                    <div class="option" data-answer="c">(c) Active IPLs</div>
+                    <div class="option" data-answer="d">(d) Preventive IPLs</div>
+                </div>
+                <div class="answer-explanation">
+                    <strong>Answer:</strong> (b) Passive IPLs. Dikes are physical structures that provide passive, mitigative protection without requiring activation.
+                </div>
+            </div>
+        </div>
+
+        <!-- True/False for LOPA -->
+        <div class="card">
+            <div class="card-title">✅ LOPA True/False Statements</div>
+            
+            <div class="question">
+                <div class="question-text">7. Bow-tie analysis can be used as input to LOPA.</div>
+                <div class="answer-explanation">
+                    <strong>✓ TRUE</strong> - Bow-tie diagrams identify scenarios that can be analyzed using LOPA.
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text">8. All safeguards are independent protection layers.</div>
+                <div class="answer-explanation">
+                    <strong>✗ FALSE</strong> - All IPLs are safeguards, but not every safeguard meets the requirements of being an IPL (independence, effectiveness, etc.).
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text">9. Independent protection layers should be powered by the same power source.</div>
+                <div class="answer-explanation">
+                    <strong>✗ FALSE</strong> - Independent protection layers should have <strong>independent power or utility sources</strong> to maintain their independence.
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text">10. A common cause failure is failure of more than one device due to the same cause.</div>
+                <div class="answer-explanation">
+                    <strong>✓ TRUE</strong> - Common cause failure affects multiple systems simultaneously.
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text">11. When one protection layer depends on another, the layers are independent.</div>
+                <div class="answer-explanation">
+                    <strong>✗ FALSE</strong> - When performance of one layer depends on another, they are <strong>NOT independent</strong>.
+                </div>
+            </div>
+        </div>
+
+        <!-- LOPA Definitions -->
+        <div class="card">
+            <div class="card-title">📚 LOPA Key Concepts</div>
+            
+            <div style="margin: 1.5rem 0;">
+                <h4 style="color: var(--accent); margin-bottom: 1rem;">Methods to Determine Initiating Event Frequency:</h4>
+                <ul class="content-list">
+                    <li><strong>Site specific:</strong> Data from this specific facility</li>
+                    <li><strong>Predicted:</strong> Calculated based on models</li>
+                    <li><strong>Generic:</strong> Industry standard data</li>
+                    <li><strong>Expert judgement:</strong> Professional assessment</li>
+                </ul>
+            </div>
+
+            <div style="margin: 1.5rem 0;">
+                <h4 style="color: var(--accent); margin-bottom: 1rem;">Key Definitions:</h4>
+                <ul class="content-list">
+                    <li><strong>Enabling Condition:</strong> Operating conditions necessary for an initiating cause to propagate into a hazardous event</li>
+                    <li><strong>Conditional Modifier:</strong> The probability of hazardous atmosphere, ignition, explosion, personnel presence, injury or fatality</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- LOPA Case Study -->
+        <div class="card">
+            <div class="card-title">🔬 LOPA Case Study: Separator 50 Overpressure Analysis</div>
+            
+            <div style="background: rgba(6, 182, 212, 0.1); border: 1px solid var(--accent); border-radius: 8px; padding: 1.5rem; margin-bottom: 1.5rem;">
+                <h4 style="color: var(--accent-light); margin-bottom: 1rem;">Scenario Description:</h4>
+                <p><strong>Consequence:</strong> Separator 50 overpressure resulting in separator rupture and possible multiple fatalities</p>
+                <p style="margin-top: 0.5rem;"><strong>Initiating Event:</strong> Loop failure of PIC-50 BPCS</p>
+            </div>
+
+            <table>
+                <tr>
+                    <th>Component</th>
+                    <th>Value</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td>Initiating Event Frequency</td>
+                    <td>0.1 per year</td>
+                    <td>Failure of PIC-50 BPCS pressure control loop</td>
+                </tr>
+                <tr>
+                    <td>Enabling Condition</td>
+                    <td>1.0 (None)</td>
+                    <td>No enabling condition identified</td>
+                </tr>
+                <tr>
+                    <td>Personnel Probability</td>
+                    <td>0.5</td>
+                    <td>Probability of personnel in affected area</td>
+                </tr>
+                <tr>
+                    <td>Fatal Injury Probability</td>
+                    <td>0.1</td>
+                    <td>Probability of fatal injuries given exposure</td>
+                </tr>
+            </table>
+
+            <div class="formula-block" style="margin-top: 1.5rem;">
+```
+
+Unmitigated Consequence Frequency:
+f = 0.1 × 1 × (0.5 × 0.1) = 0.005 per year
+</div>
+
+```
+            <h4 style="color: var(--accent-light); margin: 1.5rem 0 1rem;">Independent Protection Layers (IPLs):</h4>
+            <table>
+                <tr>
+                    <th>IPL Description</th>
+                    <th>Type</th>
+                    <th>PFD</th>
+                </tr>
+                <tr>
+                    <td>Inherently safer design</td>
+                    <td>Prevention/Design</td>
+                    <td>0.01</td>
+                </tr>
+                <tr>
+                    <td>Safety Instrumented Function (PAHH & PAH)</td>
+                    <td>Detection & Response</td>
+                    <td>0.01</td>
+                </tr>
+                <tr>
+                    <td>Pressure Safety Valve (PSV-50)</td>
+                    <td>Relief/Mitigation</td>
+                    <td>0.01</td>
+                </tr>
+            </table>
+
+            <div class="formula-block" style="margin-top: 1.5rem;">
+```
+
+Total PFD for all IPLs:
+∏PFD = 0.01 × 0.01 × 0.01 = 0.000001 = 1 × 10⁻⁶
+</div>
+
+```
+            <div class="formula-block">
+```
+
+Mitigated Consequence Frequency:
+f = 0.1 × 0.000001 × 1 × (0.5 × 0.1)
+f = 0.1 × 0.000001 × 0.05
+f = 5 × 10⁻⁹ per year = 0.000000005
+</div>
+
+```
+            <div style="background: rgba(16, 185, 129, 0.2); border: 1px solid var(--success); border-radius: 8px; padding: 1.5rem; margin-top: 1.5rem;">
+                <h4 style="color: var(--success); margin-bottom: 1rem;">✅ Risk Assessment Result:</h4>
+                <p><strong>Risk Tolerance Level:</strong> Category 5 with frequency < 10⁻⁶ per year</p>
+                <p style="margin-top: 0.5rem;"><strong>Conclusion:</strong> The mitigated consequence frequency (5 × 10⁻⁹) is well below the acceptable threshold of 10⁻⁶</p>
+                <p style="margin-top: 0.5rem;"><strong>Action Required:</strong> ✓ No additional risk reduction actions required. Existing IPLs are adequate provided they are properly maintained and tested.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chapter 5: Operations -->
+    <div id="chapter5" class="tab-content">
+        <div class="card">
+            <div class="card-title">🏭 Chapter 5: Operating Procedures & Management of Change</div>
+            
+            <h3 style="color: var(--accent-light); margin-top: 2rem; margin-bottom: 1rem;">🎯 Multiple Choice Questions</h3>
+            
+            <div class="question multiple-choice">
+                <div class="question-text">Q1: The following is true about Operating Procedures (OPs):</div>
+                <div class="options">
+                    <div class="option" data-answer="a">(a) Designed for nonroutine tasks</div>
+                    <div class="option" data-answer="b">(b) Applicable mainly to tasks requiring permits</div>
+                    <div class="option" data-answer="c">(c) Written for use across a facility or the entire organization</div>
+                    <div class="option" data-answer="d">(d) Intended to support normal operation within safe operating limits</div>
+                </div>
+                <div class="answer-explanation">
+                    <strong>Answer:</strong> (d) Intended to support normal operation within safe operating limits. OPs provide standardized procedures for routine operations.
+                </div>
+            </div>
+
+            <div class="question multiple-choice">
+                <div class="question-text">Q2: The following task requires OPs:</div>
+                <div class="options">
+                    <div class="option" data-answer="a">(a) Nonroutine hot works</div>
+                    <div class="option" data-answer="b">(b) Startup and shutdown activities</div>
+                    <div class="option" data-answer="c">(c) Confined space entry</div>
+                    <div class="option" data-answer="d">(d) Nonroutine Inspection</div>
+                </div>
+                <div class="answer-explanation">
+                    <strong>Answer:</strong> (b) Startup and shutdown activities. These are critical operational tasks that require formal procedures.
+                </div>
+            </div>
+
+            <div class="question multiple-choice">
+                <div class="question-text">Q3: The following participate in the preparation of OPs:</div>
+                <div class="options">
+                    <div class="option" data-answer="a">(a) Engineers</div>
+                    <div class="option" data-answer="b">(b) Frontline managers</div>
+                    <div class="option" data-answer="c">(c) Operators</div>
+                    <div class="option" data-answer="d">(d) All of the above</div>
+                </div>
+                <div class="answer-explanation">
+                    <strong>Answer:</strong> (d) All of the above. OP development is multidisciplinary and requires input from all stakeholders.
+                </div>
+            </div>
+
+            <div class="question multiple-choice">
+                <div class="question-text">Q4: "In hand" operating procedures should be used in case of:</div>
+                <div class="options">
+                    <div class="option" data-answer="a">(a) Critical tasks</div>
+                    <div class="option" data-answer="b">(b) Routine tasks</div>
+                    <div class="option" data-answer="c">(c) Manual tasks</div>
+                    <div class="option" data-answer="d">(d) Assembly tasks</div>
+                </div>
+                <div class="answer-explanation">
+                    <strong>Answer:</strong> (a) Critical tasks. Critical tasks require immediate reference access to procedures during execution.
+                </div>
+            </div>
+
+            <div class="question multiple-choice">
+                <div class="question-text">Q5: The following event requires a management-of-change policy:</div>
+                <div class="options">
+                    <div class="option" data-answer="a">(a) Replacing an old vent valve with a new one of the same design</div>
+                    <div class="option" data-answer="b">(b) Replacement of a machine with another using different technology</div>
+                    <div class="option" data-answer="c">(c) Replacement-in-kind</div>
+                    <div class="option" data-answer="d">(d) Confined space entry</div>
+                </div>
+                <div class="answer-explanation">
+                    <strong>Answer:</strong> (b) Replacement of a machine with another using different technology. This represents a substantive change requiring MOC review.
+                </div>
+            </div>
+
+            <div class="question multiple-choice">
+                <div class="question-text">Q6: The program associated with efforts to ensure a process is ready for start-up/restart is named:</div>
+                <div class="options">
+                    <div class="option" data-answer="a">(a) Management of change</div>
+                    <div class="option" data-answer="b">(b) Safety permits</div>
+                    <div class="option" data-answer="c">(c) Conduct of operation</div>
+                    <div class="option" data-answer="d">(d) Operational readiness</div>
+                </div>
+                <div class="answer-explanation">
+                    <strong>Answer:</strong> (d) Operational readiness. This program ensures all systems are prepared and personnel are ready before startup.
+                </div>
+            </div>
+        </div>
+
+        <!-- Chapter 5 True/False -->
+        <div class="card">
+            <div class="card-title">✅ Operating Procedures True/False</div>
+            
+            <div class="question">
+                <div class="question-text">1. OPs provide instructions for troubleshooting when the system does not respond as expected.</div>
+                <div class="answer-explanation">
+                    <strong>✓ TRUE</strong> - OPs typically include troubleshooting sections for abnormal conditions.
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text">2. OPs cannot be used in training since they can't develop operators' performance and skills.</div>
+                <div class="answer-explanation">
+                    <strong>✗ FALSE</strong> - OPs <strong>CAN be used in training</strong> to develop operators' performance and skills.
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text">3. OPs should be designed in the form of outlines.</div>
+                <div class="answer-explanation">
+                    <strong>✗ FALSE</strong> - OPs may be prepared in multiple formats including paragraphs, outlines, multicolumn layouts, flowcharts, or checklists depending on the task complexity and user needs.
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text">4. Conduct of operation ensures that every task is performed deliberately and correctly.</div>
+                <div class="answer-explanation">
+                    <strong>✓ TRUE</strong> - Conduct of operation establishes the framework for proper task execution.
+                </div>
+            </div>
+        </div>
+
+        <!-- Management of Change -->
+        <div class="card">
+            <div class="card-title">⚙️ Management of Change (MOC)</div>
+            
+            <div class="key-point">Management of Change is a systematic process to identify, evaluate, and implement changes to equipment, materials, procedures, or processes in a way that maintains safety and operability.
+            </div>
+
+            <h4 style="color: var(--accent-light); margin: 1.5rem 0 1rem;">Changes Requiring MOC Review:</h4>
+            <ul class="content-list">
+                <li>Technology changes (different machines or equipment types)</li>
+                <li>Procedural changes to operations or maintenance</li>
+                <li>Equipment modifications or upgrades</li>
+                <li>Process parameter changes</li>
+                <li>Staffing or organizational changes</li>
+                <li>Regulatory or standards updates</li>
+            </ul>
+
+            <h4 style="color: var(--accent-light); margin: 1.5rem 0 1rem;">Changes NOT Requiring MOC (Replacement-in-Kind):</h4>
+            <ul class="content-list">
+                <li>Direct replacement with identical or equivalent equipment</li>
+                <li>Same specifications and performance characteristics</li>
+                <li>No change in function or operating parameters</li>
+            </ul>
+        </div>
+
+        <!-- Operating Procedures Best Practices -->
+        <div class="card">
+            <div class="card-title">📋 Operating Procedures: Best Practices</div>
+            
+            <h4 style="color: var(--accent-light); margin: 1.5rem 0 1rem;">Format Options for OPs:</h4>
+            <ul class="content-list">
+                <li><strong>Paragraphs:</strong> Narrative descriptions (verbal procedures)</li>
+                <li><strong>Outlines:</strong> Hierarchical structure with main steps and sub-steps</li>
+                <li><strong>Multicolumn layouts:</strong> Side-by-side information and actions</li>
+                <li><strong>Flowcharts:</strong> Visual representation of decision paths</li>
+                <li><strong>Checklists:</strong> Simple tick-off format for step-by-step tasks</li>
+            </ul>
+
+            <h4 style="color: var(--accent-light); margin: 1.5rem 0 1rem;">OP Content Typically Includes:</h4>
+            <ul class="content-list">
+                <li>Purpose and scope of the procedure</li>
+                <li>Normal operating steps with expected conditions</li>
+                <li>Abnormal operation procedures</li>
+                <li>Troubleshooting and problem resolution</li>
+                <li>Emergency shutdown procedures</li>
+                <li>Safety precautions and hazard warnings</li>
+            </ul>
+
+            <h4 style="color: var(--accent-light); margin: 1.5rem 0 1rem;">Key Programs:</h4>
+            <ul class="content-list">
+                <li><strong>Conduct of Operation:</strong> Ensures deliberate, correct task execution</li>
+                <li><strong>Operational Readiness:</strong> Verifies process readiness before startup/restart</li>
+                <li><strong>Management of Change:</strong> Controls and documents changes to the process</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Practice Mode -->
+    <div id="practice" class="tab-content">
+        <div class="card">
+            <div class="card-title">🎓 Practice Mode - Quiz Yourself</div>
+            
+            <div class="quiz-controls">
+                <button class="btn" onclick="startQuiz()">Start Practice Quiz</button>
+                <button class="btn secondary" onclick="resetProgress()">Reset All Answers</button>
+            </div>
+
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="stat-value" id="total-answered">0</div>
+                    <div class="stat-label">Answered</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="total-correct">0</div>
+                    <div class="stat-label">Correct</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="total-score">0%</div>
+                    <div class="stat-label">Score</div>
+                </div>
+            </div>
+
+            <div class="key-point">
+                Click on any question in any chapter to select your answer. Your score will be tracked automatically. Use this to test your knowledge before the exam!
+            </div>
+
+            <h4 style="color: var(--accent-light); margin-top: 2rem; margin-bottom: 1rem;">📊 Study Tips:</h4>
+            <ul class="content-list">
+                <li>Review all chapters systematically</li>
+                <li>Pay special attention to LOPA calculations and risk assessment</li>
+                <li>Understand the difference between IPLs and regular safeguards</li>
+                <li>Know the correct definitions of key terms like "Enabling Condition" and "Conditional Modifier"</li>
+                <li>Be familiar with hazardous area classification and industrial truck designations</li>
+                <li>Understand the importance of process knowledge management</li>
+                <li>Master the process parameter diagram and operating zones</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <div class="card-title">💡 Exam Focus Areas</div>
+            
+            <h4 style="color: var(--success); margin: 1rem 0;">Chapter 4-1 Priorities:</h4>
+            <ul class="content-list">
+                <li>Hazardous area classification (Division 1 vs 2, Classes, Groups)</li>
+                <li>Industrial truck types and their safety features (EX, EE, DY, ES, etc.)</li>
+                <li>Process knowledge management principles</li>
+                <li>HIRA techniques (quantitative vs qualitative)</li>
+                <li>Process parameter operating zones</li>
+            </ul>
+
+            <h4 style="color: var(--success); margin: 1rem 0;">Chapter 4-2 Priorities:</h4>
+            <ul class="content-list">
+                <li>LOPA methodology and calculations</li>
+                <li>Independent Protection Layers (IPLs) and their independence requirements</li>
+                <li>Probability of Failure on Demand (PFD) calculations</li>
+                <li>Enabling conditions vs conditional modifiers</li>
+                <li>Risk assessment and tolerance levels</li>
+            </ul>
+
+            <h4 style="color: var(--success); margin: 1rem 0;">Chapter 5 Priorities:</h4>
+            <ul class="content-list">
+                <li>Operating Procedures purposes and formats</li>
+                <li>Tasks requiring formal procedures (startup, shutdown, critical operations)</li>
+                <li>Management of Change requirements and exceptions</li>
+                <li>Operational Readiness programs</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>PSM Exam Hub © 2025 | Process Safety Management Study Resource | IESE651</p>
+    <p>Last Updated: May 12, 2026</p>
+</footer>
+
+<script>
+    // Tab Navigation
+    document.querySelectorAll('.tab-button').forEach(button => {
+        button.addEventListener('click', function() {
+            const tabId = this.getAttribute('data-tab');
+            
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Remove active from all buttons
+            document.querySelectorAll('.tab-button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show selected tab and mark button active
+            document.getElementById(tabId).classList.add('active');
+            this.classList.add('active');
+            
+            // Update progress bar
+            updateProgress();
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        });
+    });
+
+    // Quiz Functionality
+    let quizStats = {
+        answered: 0,
+        correct: 0
+    };
+
+    // LOPA questions - these will show answers immediately
+    const lopaQuestions = ['Q9', 'Q10', 'Q11', 'Q12', 'Q13', 'Q14'];
+
+    document.querySelectorAll('.question.multiple-choice').forEach((question, index) => {
+        const options = question.querySelectorAll('.option');
+        const explanation = question.querySelector('.answer-explanation');
+        const questionText = question.querySelector('.question-text').textContent;
+        const isLopaQuestion = lopaQuestions.some(q => questionText.includes(q));
+        
+        // Extract correct answer from explanation
+        let correctAnswer = null;
+        if (explanation) {
+            const explanationText = explanation.textContent;
+            const match = explanationText.match(/Answer:.*?\(([a-d])\)/);
+            if (match) {
+                correctAnswer = match[1];
+            }
+        }
+        
+        // Add submit button for non-LOPA questions
+        let submitBtn = null;
+        if (!isLopaQuestion && !question.hasAttribute('data-submit-added')) {
+            submitBtn = document.createElement('button');
+            submitBtn.className = 'btn';
+            submitBtn.textContent = 'Submit Answer';
+            submitBtn.style.marginTop = '1rem';
+            submitBtn.style.display = 'none';
+            question.appendChild(submitBtn);
+            question.setAttribute('data-submit-added', 'true');
+        }
+        
+        options.forEach(option => {
+            option.addEventListener('click', function() {
+                // For non-LOPA questions, just highlight selection
+                if (!isLopaQuestion) {
+                    options.forEach(opt => opt.classList.remove('selected'));
+                    this.classList.add('selected');
+                    if (submitBtn) submitBtn.style.display = 'block';
+                    return;
+                }
+                
+                // For LOPA questions, show answer immediately
+                options.forEach(opt => opt.classList.remove('selected', 'correct', 'incorrect'));
+                const selectedAnswer = this.getAttribute('data-answer');
+                this.classList.add('selected');
+                
+                if (selectedAnswer === correctAnswer) {
+                    this.classList.add('correct');
+                    if (!question.classList.contains('answered')) {
+                        quizStats.correct++;
+                        quizStats.answered++;
+                        question.classList.add('answered');
+                    }
+                } else {
+                    this.classList.add('incorrect');
+                    options.forEach(opt => {
+                        if (opt.getAttribute('data-answer') === correctAnswer) {
+                            opt.classList.add('correct');
+                        }
+                    });
+                    if (!question.classList.contains('answered')) {
+                        quizStats.answered++;
+                        question.classList.add('answered');
+                    }
+                }
+                
+                explanation.classList.add('show');
+                updateStats();
+            });
+        });
+        
+        // Handle submit for non-LOPA questions
+        if (submitBtn) {
+            submitBtn.addEventListener('click', function() {
+                const selectedOption = question.querySelector('.option.selected');
+                if (!selectedOption) {
+                    alert('Please select an answer first!');
+                    return;
+                }
+                
+                options.forEach(opt => opt.classList.remove('correct', 'incorrect'));
+                const selectedAnswer = selectedOption.getAttribute('data-answer');
+                
+                if (selectedAnswer === correctAnswer) {
+                    selectedOption.classList.add('correct');
+                    if (!question.classList.contains('answered')) {
+                        quizStats.correct++;
+                        quizStats.answered++;
+                        question.classList.add('answered');
+                    }
+                } else {
+                    selectedOption.classList.add('incorrect');
+                    options.forEach(opt => {
+                        if (opt.getAttribute('data-answer') === correctAnswer) {
+                            opt.classList.add('correct');
+                        }
+                    });
+                    if (!question.classList.contains('answered')) {
+                        quizStats.answered++;
+                        question.classList.add('answered');
+                    }
+                }
+                
+                explanation.classList.add('show');
+                submitBtn.style.display = 'none';
+                updateStats();
+            });
+        }
+    });
+
+    // True/False Questions
+    document.querySelectorAll('.question:not(.multiple-choice)').forEach((question) => {
+        const explanation = question.querySelector('.answer-explanation');
+        if (!explanation) return;
+        
+        if (!question.hasAttribute('data-tf-handled')) {
+            // Create True/False buttons
+            const buttonContainer = document.createElement('div');
+            buttonContainer.style.display = 'flex';
+            buttonContainer.style.gap = '1rem';
+            buttonContainer.style.marginTop = '1rem';
+            
+            const trueBtn = document.createElement('button');
+            trueBtn.className = 'btn';
+            trueBtn.textContent = 'True';
+            trueBtn.style.flex = '1';
+            
+            const falseBtn = document.createElement('button');
+            falseBtn.className = 'btn';
+            falseBtn.textContent = 'False';
+            falseBtn.style.flex = '1';
+            
+            buttonContainer.appendChild(trueBtn);
+            buttonContainer.appendChild(falseBtn);
+            question.appendChild(buttonContainer);
+            question.setAttribute('data-tf-handled', 'true');
+            
+            // Determine correct answer from explanation
+            const explanationText = explanation.textContent.toLowerCase();
+            const isCorrectTrue = explanationText.includes('✓ true') || (explanationText.includes('true') && !explanationText.includes('false'));
+            const isCorrectFalse = explanationText.includes('✗ false') || explanationText.includes('correction:');
+            
+            trueBtn.addEventListener('click', function() {
+                handleTFAnswer(question, true, isCorrectTrue, explanation, trueBtn, falseBtn);
+            });
+            
+            falseBtn.addEventListener('click', function() {
+                handleTFAnswer(question, false, isCorrectFalse, explanation, trueBtn, falseBtn);
+            });
+        }
+    });
+
+    function handleTFAnswer(question, selectedTrue, isCorrect, explanation, trueBtn, falseBtn) {
+        if (isCorrect) {
+            if (selectedTrue) {
+                trueBtn.style.background = 'rgba(16, 185, 129, 0.3)';
+                trueBtn.style.borderColor = 'var(--success)';
+                trueBtn.style.color = 'var(--success)';
+            } else {
+                falseBtn.style.background = 'rgba(16, 185, 129, 0.3)';
+                falseBtn.style.borderColor = 'var(--success)';
+                falseBtn.style.color = 'var(--success)';
+            }
+            if (!question.classList.contains('answered')) {
+                quizStats.correct++;
+                quizStats.answered++;
+                question.classList.add('answered');
+            }
+        } else {
+            const selectedBtn = selectedTrue ? trueBtn : falseBtn;
+            const correctBtn = selectedTrue ? falseBtn : trueBtn;
+            selectedBtn.style.background = 'rgba(239, 68, 68, 0.3)';
+            selectedBtn.style.borderColor = 'var(--danger)';
+            selectedBtn.style.color = 'var(--danger)';
+            correctBtn.style.background = 'rgba(16, 185, 129, 0.3)';
+            correctBtn.style.borderColor = 'var(--success)';
+            correctBtn.style.color = 'var(--success)';
+            if (!question.classList.contains('answered')) {
+                quizStats.answered++;
+                question.classList.add('answered');
+            }
+        }
+        
+        explanation.classList.add('show');
+        trueBtn.disabled = true;
+        falseBtn.disabled = true;
+        trueBtn.style.cursor = 'not-allowed';
+        falseBtn.style.cursor = 'not-allowed';
+        updateStats();
+    }
+
+    function updateStats() {
+        const total = document.querySelectorAll('.question').length;
+        const percentage = quizStats.answered > 0 ? Math.round((quizStats.correct / quizStats.answered) * 100) : 0;
+        
+        document.getElementById('total-answered').textContent = quizStats.answered;
+        document.getElementById('total-correct').textContent = quizStats.correct;
+        document.getElementById('total-score').textContent = percentage + '%';
+    }
+
+    function updateProgress() {
+        const total = document.querySelectorAll('.question').length;
+        const percentage = total > 0 ? (quizStats.answered / total) * 100 : 0;
+        document.querySelector('.progress-fill').style.width = percentage + '%';
+    }
+
+    function startQuiz() {
+        alert('Quiz mode is active!\n\n📌 LOPA Questions (4-2): Click answer to see immediately\n📌 Other Questions: Select answer, then click Submit\n📌 True/False: Click True or False, get correction after\n\nYour progress is tracked! Good luck! 🎓');
+    }
+
+    function resetProgress() {
+        if (confirm('Are you sure you want to reset all answers? This cannot be undone.')) {
+            location.reload();
+        }
+    }
+
+    // Initial stats update
+    updateStats();
+</script>
+```
+
+</body>
+</html>
